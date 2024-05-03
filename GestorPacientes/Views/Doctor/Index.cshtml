@@ -1,0 +1,60 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Doctors
+@model List<DoctorViewModel>
+
+@{
+    ViewData["Title"] = "Listado de Medicos";
+}
+
+<div class="container">
+    <h1 class="">Medicos</h1>
+    <a asp-controller="Doctor" asp-action="Create" class="btn btn-primary-custom m-3">
+        <i class="bi bi-plus-circle-fill"></i>
+        Registrar Medico
+    </a>
+    <div class="border rounded-3 card-box-shadow bg-white p-4 mt-4">
+        <table class="table table-hover">
+            <thead class="fw-bold fs-4">
+                <tr>
+                    <th class="">Medico</th>
+                    <th class="">Correo</th>
+                    <th class="">Telefono</th>
+                    <th class="">Cedula</th>
+                    <th class="text-end">Opciones</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (DoctorViewModel doctor in Model)
+                {
+                    <tr class="align-middle">
+                        <td class="py-3 fs-6">
+                            <img src="@doctor.ImageUrl" class="rounded" alt="Foto del medico @doctor.FirstName @doctor.LastName" 
+                                style="width: 50px; height: auto; margin-right: 10px;">
+                            @doctor.FirstName @doctor.LastName<br>
+                        </td>
+                        <td class="py-3">
+                            @doctor.Email
+                        </td>
+
+                        <td class="py-3">
+                            @doctor.Phone
+                        </td>
+                        <td class="py-3">
+                            @doctor.IdNumber
+                        </td>
+                        <td class="text-end align-items-center py-3">
+                            <a class="btn btn-secondary btn-sm" asp-controller="Doctor" asp-action="Edit" asp-route-id=@doctor.Id>
+                                <i class="bi bi-pencil-square"></i>
+                                Editar
+                            </a>
+                            <a class="btn btn-danger btn-sm" asp-controller="Doctor" asp-action="Delete" asp-route-id=@doctor.Id>
+                                <i class="bi bi-trash-fill"></i>
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

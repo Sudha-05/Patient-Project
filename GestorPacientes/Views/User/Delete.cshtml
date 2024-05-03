@@ -1,0 +1,16 @@
+﻿@model GestorPacientes.Core.Application.ViewModels.Users.SaveUserViewModel
+
+@{
+    ViewData["Title"] = "Borrar usuario";
+}
+<div class="container mt-5">
+    <div class="border rounded-3 p-4 mt-4 text-center bg-white">
+        <h3 class="mb-3">¿Esta seguro que desea eliminar al usuario: @Model.Username?</h3>
+
+        <form asp-controller="User" asp-action="DeleteUser">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-danger">Borrar</button>
+            <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+        </form>
+    </div>
+</div>

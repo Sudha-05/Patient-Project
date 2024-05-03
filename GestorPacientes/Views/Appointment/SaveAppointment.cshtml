@@ -1,0 +1,82 @@
+﻿@model GestorPacientes.Core.Application.ViewModels.Appointment.SaveAppointmentViewModel
+
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = "Guardar cita";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card mt-3">
+            <div class="card-header bg-primary-custom">
+                <h4>@(editMode ? $"Editando la cita" : "Registrando una nueva cita")</h4>
+            </div>
+            <div class="card-body">
+                @if (Model.Doctors == null || Model.Doctors.Count == 0)
+                {
+                    <h4 class="mb-3">No hay medicos registrados</h4>
+                    <a asp-controller="Appointment" asp-action="Index" class="btn btn-warning">Volver atras</a>
+                }
+                else if (Model.Patients == null || Model.Patients.Count == 0)
+                {
+                    <h4 class="mb-3">No hay pacientes registrados</h4>
+                    <a asp-controller="Appointment" asp-action="Index" class="btn btn-warning">Volver atras</a>
+                }
+                else
+                {
+                    <form method="post" asp-asp-controller="Appointment" asp-action="@(editMode ? "Edit":"Create")">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="PatientId" class="form-label form-base"></label>
+                            <select asp-for="PatientId" class="form-select"
+                                    asp-items=@(new SelectList(Model.Patients, "Id", "FirstName"))>
+                                <option value="0">Seleccione un paciente</option>
+                            </select>
+                            <span asp-validation-for="PatientId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="DoctorId" class="form-label form-base"></label>
+                            <select asp-for="DoctorId" class="form-select"
+                                    asp-items=@(new SelectList(Model.Doctors, "Id", "FirstName"))>
+                                <option value="0">Seleccione un medico</option>
+                            </select>
+                            <span asp-validation-for="DoctorId" class="text-danger"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Day" class="form-label"></label>
+                                    <input asp-for="Day" class="form-control" />
+                                    <span asp-validation-for="Day" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label asp-for="Time" class="form-label"></label>
+                                    <input asp-for="Time" class="form-control" />
+                                    <span asp-validation-for="Time" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Reason" class="form-label"></label>
+                            <textarea asp-for="Reason" class="form-control"></textarea>
+                            <span asp-validation-for="Reason" class="text-danger"></span>
+                        </div>
+
+                        <button class="btn btn-primary">Guardar</button>
+                        <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

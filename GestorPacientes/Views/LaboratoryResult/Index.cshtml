@@ -1,0 +1,60 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.LaboratoryResult
+@model List<LaboratoryResultViewModel>
+
+@{
+    ViewData["Title"] = "Resultados de laboratorios";
+}
+
+<div class="container">
+    <h1 class="">Resultados de laboratorios</h1>
+    <div class="d-flex justify-content-end">
+        <div class="card p-3" style="max-width: 400px;">
+            <div class="row">
+                <div class="col-xl-12">
+                    <form class="d-flex" asp-controller="LaboratoryResult" asp-action="Index" method="post" role="search">
+                        <input class="form-control me-2" name="LabSearch" type="search" placeholder="Search" aria-label="Search" />
+                        <button type="submit" class="btn btn-warning">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border rounded-3 card-box-shadow bg-white p-4 mt-4">
+        <table class="table">
+            <thead class="fw-bold fs-4">
+                <tr>
+                    <th class="">Paciente</th>
+                    <th class="">Cedula</th>
+                    <th class="">Prueba Indicada</th>
+                    <th class="text-end">Opciones</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (LaboratoryResultViewModel labResult in Model)
+                {
+                    <tr class="align-middle">
+                        <td class="py-3 fs-6">
+                            @labResult.PatientName
+                        </td>
+                        <td class="py-3">
+                            @labResult.PatientIdNumber
+                        </td>
+
+                        <td class="py-3">
+                            @labResult.LaboratoryTestName
+                        </td>
+                        <td class="text-end align-items-center py-3">
+                            <a class="btn btn-info btn-sm" asp-controller="LaboratoryResult" asp-action="ReportResult" asp-route-id=@labResult.Id>
+                                <i class="bi bi-clipboard2-pulse-fill"></i>
+                                Reportar resultados
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model GestorPacientes.Core.Application.ViewModels.LaboratoryTests.SaveLaboratoryTestViewModel
+
+@{
+    bool editMode = Model.Id == 0 ? false : true;
+    ViewData["Title"] = "Guardar prueba";
+}
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <div class="card mt-3">
+            <div class="card-header" style="background-color: #00F0BE">
+                <h4>@(editMode ? $"Editando prueba: {Model.Name}" : "Registrando nueva Prueba de Laboratorio")</h4>
+            </div>
+            <div class="card-body">
+                <form asp-asp-controller="LaboratoryTest" asp-action="@(editMode ? "Edit":"Create")">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label form-base"></label>
+                        <input type="text" asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+
+                    <button class="btn btn-primary">Guardar</button>
+                    <a class="btn btn-secondary" asp-action="Index">Cancelar</a>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

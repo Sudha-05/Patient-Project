@@ -1,0 +1,83 @@
+﻿@using GestorPacientes.Core.Application.ViewModels.Patients
+@model List<PatientViewModel>
+
+@{
+    ViewData["Title"] = "Listado de Pacientes";
+}
+
+<div class="container">
+    <h1 class="">Pacientes</h1>
+    <a asp-controller="Patient" asp-action="Create" class="btn btn-primary-custom m-3">
+        <i class="bi bi-plus-circle-fill"></i>
+        Registrar Paciente
+    </a>
+    <div class="row pt-4">
+        @foreach (PatientViewModel patient in Model)
+        {
+            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 mb-4">
+                <div class="card card-box-shadow">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <img src="@patient.ImageUrl" class="rounded-circle card-img-top img-perfil" alt="Foto del paciente @patient.FirstName @patient.LastName">
+                            <h4 class="mb-0">@patient.FirstName @patient.LastName</h4>
+                            <p class="text-muted mb-0">Paciente</p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between border-bottom py-2 mt-4">
+                            <span class="fw-strong">Teléfono</span>
+                            <span class="text-muted">@patient.Phone</span>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span class="fw-strong">Dirección</span>
+                            <span class="text-muted">@patient.Address</span>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span class="fw-strong">Cédula</span>
+                            <span class="text-muted">@patient.IdNumber</span>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span class="fw-strong">Fecha de nacimiento</span>
+                            <span class="text-muted">@patient.DateBirth.ToShortDateString()</span>
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span class="fw-strong">¿Es fumador?</span>
+                            @if (patient.IsSmoker)
+                            {
+                                <span class="text-muted">Si</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">No</span>
+
+                            }
+                        </div>
+                        <div class="d-flex justify-content-between border-bottom py-2">
+                            <span class="fw-strong">¿Tiene alergias?</span>
+                            @if (patient.HasAllergies)
+                            {
+                                <span class="text-muted">Si</span>
+                            }
+                            else
+                            {
+                                <span class="text-muted">No</span>
+
+                            }
+                        </div>
+                        <div class="d-flex justify-content-end pt-2">
+                            <div>
+                                <a class="btn btn-secondary btn-sm" asp-controller="Patient" asp-action="Edit" asp-route-id="@patient.Id">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a class="btn btn-danger btn-sm" asp-controller="Patient" asp-action="Delete" asp-route-id="@patient.Id">
+                                    <i class="bi bi-trash-fill"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+</div>
