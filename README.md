@@ -1,85 +1,91 @@
-# Patient Management System
+# 🏥 Patient Management System
 
-This project is a patient management system built using ASP.NET Core MVC under the Onion architecture. It includes various functionalities for managing users, doctors, laboratory tests, patients, appointments, and laboratory results.
+A full-stack Patient Management System built using **ASP.NET Core MVC 8.0** and the **Onion architecture**. This system enables secure and efficient management of patients, doctors, lab tests, appointments, and user roles for healthcare institutions.
 
-  
-## Functionality Overview
+> Developed and customized by **Sudharani** — Software Engineer with expertise in .NET, Azure, and full-stack development.
 
-### Login
+---
 
-- Users can log in using their credentials.
-- New users can register as administrators with unique usernames.
-- Passwords are securely hashed and stored.
+## 🔐 Authentication & Role-Based Access
 
-### Home
+- Secure login for all users
+- Admin registration with hashed password storage
+- Role-based dashboards for **Administrators** and **Assistants**
 
-- After login, users are directed to the home screen.
-- The home screen contains a menu with options based on user roles (Administrator or Assistant).
+---
 
-### User Management (Administrator)
+## 🧑‍⚕️ Functional Modules
 
-- Administrators can view, create, edit, and delete users.
-- User creation includes validation for unique usernames, password confirmation, and required fields.
-- Editing user information involves form validation and password management.
+### 🔹 User Management (Admin)
+- Create, edit, delete users
+- Enforced validations and password confirmations
 
-### Doctor Management (Administrator)
+### 🔹 Doctor Management (Admin)
+- Manage doctor profiles with image uploads
+- Includes name, email, phone, specialization
 
-- Administrators can manage doctors, including creating, editing, and deleting doctor profiles.
-- Doctor profiles include information such as name, email, phone number, and a photo upload option.
+### 🔹 Laboratory Tests (Admin)
+- Add, update, or delete lab test definitions
+- Form validation to ensure test completeness
 
-### Laboratory Test Management (Administrator)
+### 🔹 Patient Records (Assistant)
+- Manage detailed patient profiles (DOB, contact, history)
+- CRUD operations with proper form validation
 
-- Administrators can manage laboratory tests, including creating, editing, and deleting tests.
-- Tests require a name and are validated for completeness before creation.
+### 🔹 Laboratory Results (Assistant)
+- Link test results to patients
+- Mark results as completed and generate reports
 
-### Patient Management (Assistant)
+### 🔹 Appointment Scheduling (Assistant)
+- Create and manage appointments
+- Associate appointments with both patients and doctors
 
-- Assistants can manage patients, including creating, editing, and deleting patient profiles.
-- Patient profiles include information such as name, address, phone number, date of birth, and medical history.
+---
 
-### Laboratory Result Management (Assistant)
+## 💻 Technologies Used
 
-- Assistants can manage laboratory results, including reporting test results and marking tests as completed.
-- Results are associated with patients and tests, allowing for efficient tracking.
+| Layer          | Technology                        |
+|----------------|------------------------------------|
+| Frontend       | HTML, CSS, Bootstrap, Razor Pages |
+| Backend        | ASP.NET Core MVC 8.0, C#          |
+| ORM/DB Access  | Entity Framework Core             |
+| Database       | SQL Server                        |
+| Architecture   | Onion / Clean Layered Architecture|
 
-### Appointment Management (Assistant)
+---
 
-- Assistants can manage appointments, including creating, editing, and deleting appointments.
-- Appointments can be linked to patients and doctors, with options for scheduling and status updates.
+## 🚀 Getting Started
+
+### ✅ Prerequisites
+- Visual Studio 2022+ with ASP.NET Core SDK 8.0
+- SQL Server (LocalDB or full instance)
+
+### 🛠️ Setup Instructions
+1. Clone this repository or download the ZIP
+2. Open the `.sln` file in Visual Studio
+3. Update your connection string in `appsettings.json`
+4. Open **Package Manager Console** and run:
+
+5. Run the project and open it in your browser
+
+---
+
+## 🙋‍♀️ Developed By
+
+**Sudharani**  
+[LinkedIn](https://www.linkedin.com/in/sudharani05/) • [GitHub](https://github.com/Sudha-05)
+
+---
+
+## 📌 Future Enhancements
+
+- Azure AD / JWT Authentication
+- Azure DevOps CI/CD pipeline
+- PDF report generation for lab results
+- Role-based access refinement with policy-based auth
+- Azure App Service deployment
+
+---
 
 
-## Technologies Used
-
-- **Backend**
-  - C# ASP.NET Core MVC (8.0)
-  - Microsoft Entity Framework Core (Code First approach)
-
-- **Frontend**
-  - HTML
-  - CSS
-  - Bootstrap
-  - ASP.NET Razor
-
-- **ORM**
-  - Entity Framework
-
-- **Database**
-  - SQL Server
-
-## Getting Started
-
-### Prerequisites
-To run this project, you'll need:
-- Visual Studio with ASP.NET Core SDK (8 onwards)
-- SQL Server
-
-### Installation
-1. Clone the repository or download the project.
-2. Open the project in Visual Studio.
-3. Update the database connection string in `appsettings.json` to match your SQL Server setup.
-4. Open Package Manager Console in Visual Studio and run `Update-Database` to apply migrations.
-5. Run the project and access it in your browser.
-
-## Developer
-- [Federico A. Garcia](https://github.com/AleGxrcia)
 
